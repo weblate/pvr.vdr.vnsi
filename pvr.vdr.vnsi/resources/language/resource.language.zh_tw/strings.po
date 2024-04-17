@@ -5,7 +5,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: KODI Main\n"
-"Report-Msgid-Bugs-To: translations@kodi.tv\n"
+"Report-Msgid-Bugs-To: https://github.com/xbmc/xbmc/issues/\n"
 "POT-Creation-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "PO-Revision-Date: 2021-11-14 13:07+0000\n"
 "Last-Translator: JuenTingShie <t104340042@ntut.org.tw>\n"
@@ -312,3 +312,8 @@ msgstr "搜尋電子節目表"
 msgctxt "#30205"
 msgid "Repeating Child"
 msgstr "重複子項目"
+
+# empty strings from id 30206 to 30299
+msgctxt "#30300"
+msgid "The Skin is not supported"
+msgstr ""
