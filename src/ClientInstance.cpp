@@ -915,7 +915,6 @@ PVR_ERROR CVNSIClientInstance::GetRecordingEdl(const kodi::addon::PVRRecording& 
     vrp.init(VNSI_RECORDINGS_GETEDL);
     vrp.add_U32(std::stoi(recording.GetRecordingId()));
 
-    int size = 0;
     auto vresp = ReadResult(&vrp);
 
     if (vresp == nullptr)
@@ -927,7 +926,7 @@ PVR_ERROR CVNSIClientInstance::GetRecordingEdl(const kodi::addon::PVRRecording& 
       return PVR_ERROR_NO_ERROR;
     }
 
-    while (vresp->getRemainingLength() >= 2 * 8 + 4 && size++ < PVR_ADDON_EDL_LENGTH)
+    while (vresp->getRemainingLength() >= 2 * 8 + 4)
     {
       kodi::addon::PVREDLEntry entry;
 
