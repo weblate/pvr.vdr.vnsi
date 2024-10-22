@@ -1655,9 +1655,9 @@ PVR_ERROR CVNSIClientInstance::GetStreamTimes(kodi::addon::PVRStreamTimes& times
 /*******************************************/
 /** PVR Recording Stream Functions        **/
 
-bool CVNSIClientInstance::OpenRecordedStream(const kodi::addon::PVRRecording& recording)
+bool CVNSIClientInstance::OpenRecordedStream(const kodi::addon::PVRRecording& recording, int64_t& streamId)
 {
-  CloseRecordedStream();
+  CloseRecordedStream(streamId);
 
   m_recording = new cVNSIRecording(*this);
   try
@@ -1680,13 +1680,13 @@ bool CVNSIClientInstance::OpenRecordedStream(const kodi::addon::PVRRecording& re
   }
 }
 
-void CVNSIClientInstance::CloseRecordedStream()
+void CVNSIClientInstance::CloseRecordedStream(int64_t streamId)
 {
   delete m_recording;
   m_recording = nullptr;
 }
 
-int CVNSIClientInstance::ReadRecordedStream(unsigned char* buffer, unsigned int size)
+int CVNSIClientInstance::ReadRecordedStream(int64_t streamId, unsigned char* buffer, unsigned int size)
 {
   if (!m_recording)
     return -1;
@@ -1702,7 +1702,7 @@ int CVNSIClientInstance::ReadRecordedStream(unsigned char* buffer, unsigned int 
   }
 }
 
-int64_t CVNSIClientInstance::SeekRecordedStream(int64_t position, int whence)
+int64_t CVNSIClientInstance::SeekRecordedStream(int64_t streamId, int64_t position, int whence)
 {
   try
   {
@@ -1717,7 +1717,7 @@ int64_t CVNSIClientInstance::SeekRecordedStream(int64_t position, int whence)
   return -1;
 }
 
-int64_t CVNSIClientInstance::LengthRecordedStream()
+int64_t CVNSIClientInstance::LengthRecordedStream(int64_t streamId)
 {
   if (m_recording)
     return m_recording->Length();
